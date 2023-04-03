@@ -33,7 +33,7 @@ fn generate(text: String) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
 }
 
 #[wasm_bindgen]
-pub fn generate_captcha(text: String) -> Vec<u8> {
+pub fn generate_image(text: String) -> Vec<u8> {
     let img = generate(text);
     img.to_vec()
 }
