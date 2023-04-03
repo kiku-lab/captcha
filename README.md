@@ -3,4 +3,4 @@
 
 ## Sample
 
-![oi](./he.png)
+![oi](./sample.png)
