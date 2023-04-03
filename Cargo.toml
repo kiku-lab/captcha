@@ -1,0 +1,15 @@
+[package]
+name = "captcha"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+image = "0.24.6"
+imageproc = "0.23.0"
+rusttype = "0.9.3"
+wasm-bindgen = "0.2.84"
