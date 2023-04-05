@@ -27,6 +27,15 @@ fn generate(text: String) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
         let y = rand::random::<u32>() % 128;
         img.put_pixel(x, y, Rgb([0, 0, 0]));
     }
+    // Add some lines
+    for _ in 0..10 {
+        let x1 = rand::random::<u32>() % 256;
+        let y1 = rand::random::<u32>() % 128;
+        let x2 = rand::random::<u32>() % 256;
+        let y2 = rand::random::<u32>() % 128;
+        imageproc::drawing::draw_line_segment_mut(
+            &mut img, (x1 as f32, y1 as f32), (x2 as f32, y2 as f32), Rgb([0, 0, 0]));
+    }
     img
 }
 
