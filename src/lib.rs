@@ -39,15 +39,19 @@ fn generate(text: String) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
     img
 }
 
-#[wasm_bindgen]
-pub fn generate_image(text: String) -> Vec<u8> {
-    let img = generate(text);
+fn convert_to_bytes(img: ImageBuffer<Rgb<u8>, Vec<u8>>) -> Vec<u8> {
     let mut png_data = Vec::new();
     let encoder = image::codecs::png::PngEncoder::new(&mut png_data);
     encoder
-        .write_image(&img, 512, 256, image::ColorType::Rgb8)
+        .write_image(&img, 256, 128, image::ColorType::Rgb8)
         .unwrap();
     png_data
+}
+
+#[wasm_bindgen]
+pub fn generate_image(text: String) -> Vec<u8> {
+    let img = generate(text);
+    convert_to_bytes(img)
 }
 
 pub fn add(left: usize, right: usize) -> usize {
@@ -62,6 +66,7 @@ mod tests {
     fn it_works() {
         let result = add(2, 2);
         let img = generate("93829".to_string());
+        convert_to_bytes(img.clone());
         img.save("sample.png").unwrap();
         assert_eq!(result, 4);
     }
