@@ -1,8 +1,8 @@
-use image::{ImageBuffer, Rgb, ImageEncoder};
+use image::{ImageBuffer, ImageEncoder, Rgb};
 use imageproc::drawing::draw_text_mut;
+use rand::Rng;
 use rusttype::{Font, Scale};
 use wasm_bindgen::prelude::*;
-use rand::Rng;
 
 fn generate(text: String) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
     let mut img = ImageBuffer::from_pixel(256, 128, Rgb::<u8>([255, 255, 255]));
@@ -44,7 +44,9 @@ pub fn generate_image(text: String) -> Vec<u8> {
     let img = generate(text);
     let mut png_data = Vec::new();
     let encoder = image::codecs::png::PngEncoder::new(&mut png_data);
-    encoder.write_image(&img, 512, 256, image::ColorType::Rgb8).unwrap();
+    encoder
+        .write_image(&img, 512, 256, image::ColorType::Rgb8)
+        .unwrap();
     png_data
 }
 
