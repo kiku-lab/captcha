@@ -28,6 +28,7 @@ fn generate(text: String) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
         img.put_pixel(x, y, Rgb([0, 0, 0]));
     }
     // Add distortion to text
+    /*
     for _ in 0..10 {
         let x = rand::random::<u32>() % 256;
         let y = rand::random::<u32>() % 128;
@@ -36,6 +37,7 @@ fn generate(text: String) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
         let color = img.get_pixel(x, y);
         img.put_pixel(x2, y2, *color);
     }
+    */
     img
 }
 
