@@ -27,17 +27,6 @@ fn generate(text: String) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
         let y = rand::random::<u32>() % 128;
         img.put_pixel(x, y, Rgb([0, 0, 0]));
     }
-    // 画像に歪みを加える
-    for y in 0..128 {
-        for x in 0..256 {
-            let dx = rng.gen_range(-10..10) as i32;
-            let dy = rng.gen_range(-10..10) as i32;
-            let new_x = (x as i32 + dx).clamp(0, 256 as i32 - 1) as u32;
-            let new_y = (y as i32 + dy).clamp(0, 128 as i32 - 1) as u32;
-            let pixel = img.get_pixel(new_x, new_y);
-            img.put_pixel(x, y, *pixel);
-        }
-    }
     img
 }
 
