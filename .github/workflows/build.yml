@@ -31,9 +31,9 @@ jobs:
       run: |
         wasm-pack build --target nodejs --release
         mv pkg captcha
-        zip -r captcha.zip captcha
+        tar -zcvf captcha.tar.gz captcha
     - name: Upload
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: captcha.zip
+        files: captcha.tar.gz
