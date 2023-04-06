@@ -1,8 +1,8 @@
 use image::{
     ImageBuffer, ImageEncoder, Rgb,
-    codecs::png::PngEncoder,
+    codecs::png::PngEncoder, ColorType
 };
-use imageproc::drawing::draw_text_mut;
+use imageproc::drawing::{draw_text_mut, draw_line_segment_mut};
 use rand::Rng;
 use rusttype::{Font, Scale};
 use wasm_bindgen::prelude::*;
@@ -36,7 +36,7 @@ fn generate(text: String) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
         let y1 = rand::random::<u32>() % 128;
         let x2 = rand::random::<u32>() % 256;
         let y2 = rand::random::<u32>() % 128;
-        imageproc::drawing::draw_line_segment_mut(
+        draw_line_segment_mut(
             &mut img,
             (x1 as f32, y1 as f32),
             (x2 as f32, y2 as f32),
@@ -50,7 +50,7 @@ fn convert_to_bytes(img: ImageBuffer<Rgb<u8>, Vec<u8>>) -> Vec<u8> {
     let mut png_data = Vec::new();
     let encoder = PngEncoder::new(&mut png_data);
     encoder
-        .write_image(&img, 256, 128, image::ColorType::Rgb8)
+        .write_image(&img, 256, 128, ColorType::Rgb8)
         .unwrap();
     png_data
 }
