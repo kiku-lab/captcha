@@ -1,0 +1,18 @@
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: |
+        wasm-pack build --target nodejs --release
+        mv pkg captcha
+        zip -r captcha.zip captcha
+    - name: Upload
+      uses: softprops/action-gh-release@v1
+      with:
+        files: captcha.zip
