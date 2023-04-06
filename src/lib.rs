@@ -1,8 +1,5 @@
-use image::{
-    ImageBuffer, ImageEncoder, Rgb,
-    codecs::png::PngEncoder, ColorType
-};
-use imageproc::drawing::{draw_text_mut, draw_line_segment_mut};
+use image::{codecs::png::PngEncoder, ColorType, ImageBuffer, ImageEncoder, Rgb};
+use imageproc::drawing::{draw_line_segment_mut, draw_text_mut};
 use rand::Rng;
 use rusttype::{Font, Scale};
 use wasm_bindgen::prelude::*;
