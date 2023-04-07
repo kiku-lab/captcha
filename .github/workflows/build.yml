@@ -36,9 +36,7 @@ jobs:
         mv pkg captcha
         tar -zcvf captcha.tar.gz captcha
     - name: Publish to npm
-      run: |
-        cd pkg
-        npm publish
+      run: cd captcha && npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Upload
